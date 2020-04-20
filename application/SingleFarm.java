@@ -29,6 +29,8 @@ package application;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -86,6 +88,10 @@ public class SingleFarm {
 		bt1.setGraphic(new ImageView(overviewByMonthImg));
 		bt2.setGraphic(new ImageView(seePercentageShareImg));
 		bt3.setGraphic(new ImageView(accessDataImg));
+		
+		bt1.setOnAction(e -> {/*Open Window 1*/});
+		bt2.setOnAction(e -> {/*Open Window 2*/});
+		bt3.setOnAction(e -> {/*Open Window 3*/});
 
 		buttonBox1.getChildren().add(bt1);
 		buttonBox1.getChildren().add(new Label("Overview by Month"));
