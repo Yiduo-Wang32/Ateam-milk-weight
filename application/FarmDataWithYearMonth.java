@@ -110,3 +110,5 @@ public class FarmDataWithYearMonth {
   }
 
 }
+//FarmDataWithYearMonth display = new FarmDataWithYearMonth("66");
+//display.ShowFarmDataTable();
