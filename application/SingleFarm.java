@@ -53,10 +53,6 @@ import javafx.stage.Stage;
  */
 public class SingleFarm {
 	private final String FARM_ID;
-	private static final int WINDOW_WIDTH = 800;
-	private static final int WINDOW_HEIGHT = 450;
-	private static final String TOP_BOTTOM_IMAGE_PATH = "TopBottomImage.jpg";
-	private static final String VERTICAL_IMAGE_PATH = "LeftRightImage.jpg";
 	private static final String ICON1_PATH = "OverviewByMonthIcon.jpg";
 	private static final String ICON2_PATH = "SeePercentageShareIcon.jpg";
 	private static final String ICON3_PATH = "AccessDataIcon.jpg";
@@ -69,8 +65,6 @@ public class SingleFarm {
 		Stage overview = new Stage();
 		BorderPane root = new BorderPane();
 
-		Image topBottomImg = new Image(new FileInputStream(TOP_BOTTOM_IMAGE_PATH));
-		Image verticalImg = new Image(new FileInputStream(VERTICAL_IMAGE_PATH));
 		Image overviewByMonthImg = new Image(new FileInputStream(ICON1_PATH));
 		Image seePercentageShareImg = new Image(new FileInputStream(ICON2_PATH));
 		Image accessDataImg = new Image(new FileInputStream(ICON3_PATH));
