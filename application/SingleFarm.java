@@ -71,10 +71,12 @@ public class SingleFarm {
 		Image seePercentageShareImg = new Image(new FileInputStream(ICON2_PATH));
 		Image accessDataImg = new Image(new FileInputStream(ICON3_PATH));
 
-		Text text = new Text("Data for Farm " + FARM_ID + ":");
-		text.setFont(Font.font("Calibri Light", FontWeight.NORMAL, FontPosture.REGULAR, 30));
-		root.setTop(text);
-		
+		// commented the code for changing the font and size, dealing with that later
+		// Text text = new Text("Data for Farm " + FARM_ID + ":");
+		// text.setFont(Font.font("Calibri Light", FontWeight.NORMAL,
+		// FontPosture.REGULAR, 30));
+		root.setTop(new Label("Data for Farm " + FARM_ID + ":"));
+
 		HBox buttons = new HBox();
 
 		VBox buttonBox1 = new VBox();
@@ -88,10 +90,13 @@ public class SingleFarm {
 		bt1.setGraphic(new ImageView(overviewByMonthImg));
 		bt2.setGraphic(new ImageView(seePercentageShareImg));
 		bt3.setGraphic(new ImageView(accessDataImg));
-		
-		bt1.setOnAction(e -> {/*Open Window 1*/});
-		bt2.setOnAction(e -> {/*Open Window 2*/});
-		bt3.setOnAction(e -> {/*Open Window 3*/});
+
+		bt1.setOnAction(e -> {
+			/* Open Window 1 */});
+		bt2.setOnAction(e -> {
+			/* Open Window 2 */});
+		bt3.setOnAction(e -> {
+			/* Open Window 3 */});
 
 		buttonBox1.getChildren().add(bt1);
 		buttonBox1.getChildren().add(new Label("Overview by Month"));
