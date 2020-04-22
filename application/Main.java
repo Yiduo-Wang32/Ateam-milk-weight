@@ -60,6 +60,11 @@ public class Main extends Application {
 	private static final int WINDOW_HEIGHT = 800; // height of the window that users see
 	private static final String APP_TITLE = "Milk Weight Analyzer";
 
+	/**
+	 * Create the first page that user will see: provide description 
+	 * about this application and instruction about what to do next.
+	 * @param Stage primaryStage
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		BorderPane root = new BorderPane();
@@ -110,6 +115,11 @@ public class Main extends Application {
 
 	}
 
+	/**
+	 * Create the help page: user can found the detailed instructions about the function 
+	 * of this application. 
+	 * @param Window primaryStage
+	 */
 	public void help(Window primaryStage) {
 		VBox v1 = new VBox();
 		Label helpMessage = new Label("What can this program do? " + "\n\n");
@@ -141,10 +151,19 @@ public class Main extends Application {
 		popUp.show();
 	}
 
+	/**
+	 * Helper method to leave the current page. 
+	 * @param Stage currStage
+	 */
 	public void exitCurrScreen(Stage currStage) {
 		currStage.close();
 	}
 
+	/**
+	 * Provide options of milk data analyzing method.
+	 * After selecting, direct to the method that option is related
+	 *  to and show results. 
+	 */
 	public void chooseOptions() {
 		// Main layout is Border Pane example (top,left,center,right,bottom)
 		BorderPane root = new BorderPane();
@@ -227,6 +246,11 @@ public class Main extends Application {
 		secScreen.show();
 	}
 
+	/**
+	 * Provide option to analyze statistics for a specific farm, or all farms.
+	 * After selecting,  direct to the method that option is related to and show results. 
+	 * @param Stage primaryStage
+	 */
 	public void oneOrMoreFarmsStats(Stage primaryStage) {
 		BorderPane root = new BorderPane();
 		Label message = new Label(
@@ -280,6 +304,11 @@ public class Main extends Application {
 		farmScreen.show();
 	}
 
+	/**
+	 * Provide option to see percent share for a specific farm, or all farms.
+	 * After selecting,  direct to the method that option is related to and show results. 
+	 * @param primaryStage
+	 */
 	public void oneOrMoreFarmsPercent(Stage primaryStage) {
 		BorderPane root = new BorderPane();
 		Label message = new Label(
@@ -331,6 +360,11 @@ public class Main extends Application {
 		farmScreen.show();
 	}
 
+	/**
+	 * User can choose to add or edit or remove data.
+	 * After selection, direct to the method that option is related to and show results. 
+	 * @param primaryStage
+	 */
 	public void changeDataOptions(Stage primaryStage) {
 		BorderPane root = new BorderPane();
 		Label message = new Label("Would you like to add, edit or remove data?");
@@ -389,6 +423,14 @@ public class Main extends Application {
 		stage.show();
 	}
 
+	/**
+	 * If user choose to add or edit data, this page should show up. 
+	 * User can choose to add or edit data. The detailed information related to 
+	 * data(farm id, date, milk weight) will be able to change. 
+	 * After finish addition or editing, user can click "submit" to save changes. 
+	 * @param action
+	 * @param primaryStage
+	 */
 	public void addOrEditData(String action, Stage primaryStage) {
 		BorderPane root = new BorderPane();
 		Label prompt = new Label(
@@ -447,6 +489,14 @@ public class Main extends Application {
 		stage.show();
 	}
 
+	/**
+	 * If user choose to remove data, this page should show up. 
+	 * User can remove data. The detailed information related to data(farm id, date, milk weight) 
+	 * will be able to find the data, which is going to be removed. 
+	 * After finish addition or editing, user can click "submit" to save changes, and if change is 
+	 * saved, direct to confirmation page. 
+	 * @param primaryStage
+	 */
 	public void removeData(Stage primaryStage) {
 		BorderPane root = new BorderPane();
 		Label message = new Label(
@@ -500,6 +550,11 @@ public class Main extends Application {
 		stage.show();
 	}
 
+	/**
+	 * Confirmation page when data changes(add, edit, or remove) are successfully saved. 
+	 * User can choose to return to previous screen. 
+	 * @param primaryStage
+	 */
 	public void success(Stage primaryStage) {
 		BorderPane root = new BorderPane();
 		root.setTop(new Label(""));
@@ -526,6 +581,10 @@ public class Main extends Application {
 		stage.show();
 	}
 
+	/**
+	 * Show the statistic analysis of one farm. 
+	 * @param Stage primaryStage
+	 */
 	public void showStatsOneFarm(Stage primaryStage) {
 		Stage stage = new Stage();
 		BorderPane root = new BorderPane();
@@ -593,7 +652,11 @@ public class Main extends Application {
 		stage.setScene(scene);
 		stage.show();
 	}
-
+	
+	/**
+	 * Choose to see the date of all farms. 
+	 * @param primaryStage
+	 */
 	public void chooseDatesAllFarms(Stage primaryStage) {
 		BorderPane root2_2 = new BorderPane();
 		Label message = new Label(
