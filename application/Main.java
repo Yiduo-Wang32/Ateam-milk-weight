@@ -63,7 +63,7 @@ public class Main extends Application {
 	/**
 	 * Create the first page that user will see: provide description 
 	 * about this application and instruction about what to do next.
-	 * @param Stage primaryStage
+	 * @param Stage primaryStage start page
 	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -118,7 +118,7 @@ public class Main extends Application {
 	/**
 	 * Create the help page: user can found the detailed instructions about the function 
 	 * of this application. 
-	 * @param Window primaryStage
+	 * @param Window primaryStage start page
 	 */
 	public void help(Window primaryStage) {
 		VBox v1 = new VBox();
@@ -153,7 +153,7 @@ public class Main extends Application {
 
 	/**
 	 * Helper method to leave the current page. 
-	 * @param Stage currStage
+	 * @param Stage currStage current page
 	 */
 	public void exitCurrScreen(Stage currStage) {
 		currStage.close();
@@ -249,7 +249,7 @@ public class Main extends Application {
 	/**
 	 * Provide option to analyze statistics for a specific farm, or all farms.
 	 * After selecting,  direct to the method that option is related to and show results. 
-	 * @param Stage primaryStage
+	 * @param Stage primaryStage start page
 	 */
 	public void oneOrMoreFarmsStats(Stage primaryStage) {
 		BorderPane root = new BorderPane();
@@ -307,7 +307,7 @@ public class Main extends Application {
 	/**
 	 * Provide option to see percent share for a specific farm, or all farms.
 	 * After selecting,  direct to the method that option is related to and show results. 
-	 * @param primaryStage
+	 * @param primaryStage start page
 	 */
 	public void oneOrMoreFarmsPercent(Stage primaryStage) {
 		BorderPane root = new BorderPane();
@@ -363,7 +363,7 @@ public class Main extends Application {
 	/**
 	 * User can choose to add or edit or remove data.
 	 * After selection, direct to the method that option is related to and show results. 
-	 * @param primaryStage
+	 * @param primaryStage start page
 	 */
 	public void changeDataOptions(Stage primaryStage) {
 		BorderPane root = new BorderPane();
@@ -428,8 +428,8 @@ public class Main extends Application {
 	 * User can choose to add or edit data. The detailed information related to 
 	 * data(farm id, date, milk weight) will be able to change. 
 	 * After finish addition or editing, user can click "submit" to save changes. 
-	 * @param action
-	 * @param primaryStage
+	 * @param action choose to edit or add data
+	 * @param primaryStage start page
 	 */
 	public void addOrEditData(String action, Stage primaryStage) {
 		BorderPane root = new BorderPane();
@@ -495,7 +495,7 @@ public class Main extends Application {
 	 * will be able to find the data, which is going to be removed. 
 	 * After finish addition or editing, user can click "submit" to save changes, and if change is 
 	 * saved, direct to confirmation page. 
-	 * @param primaryStage
+	 * @param primaryStage start page
 	 */
 	public void removeData(Stage primaryStage) {
 		BorderPane root = new BorderPane();
@@ -553,7 +553,7 @@ public class Main extends Application {
 	/**
 	 * Confirmation page when data changes(add, edit, or remove) are successfully saved. 
 	 * User can choose to return to previous screen. 
-	 * @param primaryStage
+	 * @param primaryStage start page
 	 */
 	public void success(Stage primaryStage) {
 		BorderPane root = new BorderPane();
@@ -583,7 +583,7 @@ public class Main extends Application {
 
 	/**
 	 * Show the statistic analysis of one farm. 
-	 * @param Stage primaryStage
+	 * @param Stage primaryStage start page
 	 */
 	public void showStatsOneFarm(Stage primaryStage) {
 		Stage stage = new Stage();
@@ -655,7 +655,7 @@ public class Main extends Application {
 	
 	/**
 	 * Choose to see the date of all farms. 
-	 * @param primaryStage
+	 * @param primaryStage start page
 	 */
 	public void chooseDatesAllFarms(Stage primaryStage) {
 		BorderPane root2_2 = new BorderPane();
