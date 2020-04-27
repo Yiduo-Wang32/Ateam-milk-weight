@@ -12,20 +12,20 @@ public class DataManager {
 	}
 
 	public Data getMonthlyAverage(Date date) {
-		HashMap<Data, String> milkDataFromFarms = factory.milkDataFromFarms;
-		HashMap<Data, String> milkDataOfTheMonth = new HashMap<Data, String>();
+		HashMap<String, Data> milkDataFromFarms = factory.milkDataFromFarms;
+		HashMap<String, Data> milkDataOfTheMonth = new HashMap<String, Data>();
 		milkDataFromFarms.forEach((d, s) -> {
-			if (d.getDate().getMonth() == date.getMonth())
+			if (s.getDate().getMonth() == date.getMonth())
 				milkDataOfTheMonth.put(d, s);
 		});
 		return new Data(date, getAvg(milkDataOfTheMonth));
 	}
 
 	public Data getMonthlyMin(Date date) {
-		HashMap<Data, String> milkDataFromFarms = factory.milkDataFromFarms;
-		HashMap<Data, String> milkDataOfTheMonth = new HashMap<Data, String>();
+		HashMap<String, Data> milkDataFromFarms = factory.milkDataFromFarms;
+		HashMap<String, Data> milkDataOfTheMonth = new HashMap<String, Data>();
 		milkDataFromFarms.forEach((d, s) -> {
-			if (d.getDate().getMonth() == date.getMonth())
+			if (s.getDate().getMonth() == date.getMonth())
 				milkDataOfTheMonth.put(d, s);
 		});
 		return getMin(milkDataOfTheMonth);
@@ -33,10 +33,10 @@ public class DataManager {
 	}
 
 	public Data getMonthlyMax(Date date) {
-		HashMap<Data, String> milkDataFromFarms = factory.milkDataFromFarms;
-		HashMap<Data, String> milkDataOfTheMonth = new HashMap<Data, String>();
+		HashMap<String, Data> milkDataFromFarms = factory.milkDataFromFarms;
+		HashMap<String, Data> milkDataOfTheMonth = new HashMap<String, Data>();
 		milkDataFromFarms.forEach((d, s) -> {
-			if (d.getDate().getMonth() == date.getMonth())
+			if (s.getDate().getMonth() == date.getMonth())
 				milkDataOfTheMonth.put(d, s);
 		});
 		return getMin(milkDataOfTheMonth);
@@ -44,20 +44,20 @@ public class DataManager {
 	}
 
 	public Data getMonthlyAverageForFarm(Date date, String farmID) {
-		HashMap<Data, String> milkDataFromFarms = factory.milkDataFromFarms;
-		HashMap<Data, String> milkDataOfTheFarm = new HashMap<Data, String>();
+		HashMap<String, Data> milkDataFromFarms = factory.milkDataFromFarms;
+		HashMap<String, Data> milkDataOfTheFarm = new HashMap<String, Data>();
 		milkDataFromFarms.forEach((d, s) -> {
-			if (d.getDate().getMonth() == date.getMonth() && s.equals(farmID))
+			if (s.getDate().getMonth() == date.getMonth() && d.equals(farmID))
 				milkDataOfTheFarm.put(d, s);
 		});
 		return new Data(date, getAvg(milkDataOfTheFarm));
 	}
 
 	public Data getMonthlyMinForFarm(Date date, String farmID) {
-		HashMap<Data, String> milkDataFromFarms = factory.milkDataFromFarms;
-		HashMap<Data, String> milkDataOfTheFarm = new HashMap<Data, String>();
+		HashMap<String, Data> milkDataFromFarms = factory.milkDataFromFarms;
+		HashMap<String, Data> milkDataOfTheFarm = new HashMap<String, Data>();
 		milkDataFromFarms.forEach((d, s) -> {
-			if (d.getDate().getMonth() == date.getMonth() && s.equals(farmID))
+			if (s.getDate().getMonth() == date.getMonth() && d.equals(farmID))
 				milkDataOfTheFarm.put(d, s);
 		});
 		return getMin(milkDataOfTheFarm);
@@ -65,10 +65,10 @@ public class DataManager {
 	}
 
 	public Data getMonthlyMaxForFarm(Date date, String farmID) {
-		HashMap<Data, String> milkDataFromFarms = factory.milkDataFromFarms;
-		HashMap<Data, String> milkDataOfTheFarm = new HashMap<Data, String>();
+		HashMap<String, Data> milkDataFromFarms = factory.milkDataFromFarms;
+		HashMap<String, Data> milkDataOfTheFarm = new HashMap<String, Data>();
 		milkDataFromFarms.forEach((d, s) -> {
-			if (d.getDate().getMonth() == date.getMonth() && s.equals(farmID))
+			if (s.getDate().getMonth() == date.getMonth() && d.equals(farmID))
 				milkDataOfTheFarm.put(d, s);
 		});
 		return getMax(milkDataOfTheFarm);
@@ -79,10 +79,10 @@ public class DataManager {
 	}
 
 	public Data getAverageInDateRange(Date d1, Date d2) {
-		HashMap<Data, String> milkDataFromFarms = factory.milkDataFromFarms;
-		HashMap<Data, String> milkDataInRange = new HashMap<Data, String>();
+		HashMap<String, Data> milkDataFromFarms = factory.milkDataFromFarms;
+		HashMap<String, Data> milkDataInRange = new HashMap<String, Data>();
 		milkDataFromFarms.forEach((d, s) -> {
-			if (inDateRange(d.getDate(), d1, d2)) {
+			if (inDateRange(s.getDate(), d1, d2)) {
 				milkDataInRange.put(d, s);
 			}
 		});
@@ -137,10 +137,10 @@ public class DataManager {
 	}
 
 	public Data getMinInDateRange(Date d1, Date d2) {
-		HashMap<Data, String> milkDataFromFarms = factory.milkDataFromFarms;
-		HashMap<Data, String> milkDataInRange = new HashMap<Data, String>();
+		HashMap<String, Data> milkDataFromFarms = factory.milkDataFromFarms;
+		HashMap<String, Data> milkDataInRange = new HashMap<String, Data>();
 		milkDataFromFarms.forEach((d, s) -> {
-			if (inDateRange(d.getDate(), d1, d2)) {
+			if (inDateRange(s.getDate(), d1, d2)) {
 				milkDataInRange.put(d, s);
 			}
 		});
@@ -149,63 +149,63 @@ public class DataManager {
 
 	public Data getMaxInDateRange(Date d1, Date d2) {
 
-		HashMap<Data, String> milkDataFromFarms = factory.milkDataFromFarms;
-		HashMap<Data, String> milkDataInRange = new HashMap<Data, String>();
+		HashMap<String, Data> milkDataFromFarms = factory.milkDataFromFarms;
+		HashMap<String, Data> milkDataInRange = new HashMap<String, Data>();
 		milkDataFromFarms.forEach((d, s) -> {
-			if (inDateRange(d.getDate(), d1, d2)) {
+			if (inDateRange(s.getDate(), d1, d2)) {
 				milkDataInRange.put(d, s);
 			}
 		});
 		return getMax(milkDataInRange);
 	}
 
-	private String getAvg(HashMap<Data, String> dataMap) {
-		Set<Entry<Data, String>> dataSet = dataMap.entrySet();
+	private String getAvg(HashMap<String, Data> dataMap) {
+		Set<Entry<String, Data>> dataSet = dataMap.entrySet();
 		double tally = 0.0;
 		long sum = 0;
-		Iterator<Entry<Data, String>> itr = dataSet.iterator();
+		Iterator<Entry<String, Data>> itr = dataSet.iterator();
 		while (itr.hasNext()) {
-			Entry<Data, String> curr = itr.next();
+			Entry<String, Data> curr = itr.next();
 			tally++;
-			sum += Integer.parseInt(curr.getKey().getWeight());
+			sum += Integer.parseInt(curr.getValue().getWeight());
 		}
 		double avg = sum / tally;
 		return Double.toString(avg);
 	}
 
-	private Data getMin(HashMap<Data, String> dataMap) {
-		Set<Entry<Data, String>> dataSet = dataMap.entrySet();
+	private Data getMin(HashMap<String, Data> dataMap) {
+		Set<Entry<String, Data>> dataSet = dataMap.entrySet();
 		Data minData = new Data(null, "");
 		int minWeight = 0;
 		int tally = 0;
-		Iterator<Entry<Data, String>> itr = dataSet.iterator();
+		Iterator<Entry<String, Data>> itr = dataSet.iterator();
 		while (itr.hasNext()) {
-			Entry<Data, String> curr = itr.next();
+			Entry<String, Data> curr = itr.next();
 			if (tally == 0) {
-				minData = curr.getKey();
-				minWeight = Integer.parseInt(curr.getKey().getWeight());
+				minData = curr.getValue();
+				minWeight = Integer.parseInt(curr.getValue().getWeight());
 				tally++;
 			}
-			int thisWeight = Integer.parseInt(curr.getKey().getWeight());
+			int thisWeight = Integer.parseInt(curr.getValue().getWeight());
 			if (thisWeight < minWeight) {
 				minWeight = thisWeight;
-				minData = curr.getKey();
+				minData = curr.getValue();
 			}
 		}
 		return minData;
 	}
 
-	private Data getMax(HashMap<Data, String> dataMap) {
-		Set<Entry<Data, String>> dataSet = dataMap.entrySet();
+	private Data getMax(HashMap<String, Data> dataMap) {
+		Set<Entry<String, Data>> dataSet = dataMap.entrySet();
 		Data maxData = new Data(null, "");
 		int maxWeight = 0;
-		Iterator<Entry<Data, String>> itr = dataSet.iterator();
+		Iterator<Entry<String, Data>> itr = dataSet.iterator();
 		while (itr.hasNext()) {
-			Entry<Data, String> curr = itr.next();
-			int thisWeight = Integer.parseInt(curr.getKey().getWeight());
+			Entry<String, Data> curr = itr.next();
+			int thisWeight = Integer.parseInt(curr.getValue().getWeight());
 			if (thisWeight > maxWeight) {
 				maxWeight = thisWeight;
-				maxData = curr.getKey();
+				maxData = curr.getValue();
 			}
 		}
 		return maxData;
