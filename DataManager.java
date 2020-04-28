@@ -34,7 +34,7 @@ public class DataManager {
 	 * @return sorted milk data of the month
 	 */
 	private TreeMap<String, Farm> findDataOfMonth(Date date) {
-		TreeMap<String, Farm> milkDataFromFarms = factory.getMilkDataFromFarms();
+		TreeMap<String, Farm> milkDataFromFarms = factory.getDataFromFarms();
 		TreeMap<String, Farm> milkDataOfTheMonth = new TreeMap<String, Farm>();
 
 		// go through the milk data of each farm
@@ -95,7 +95,7 @@ public class DataManager {
 	 * @return the milk data of each farm at a certain date
 	 */
 	private TreeMap<String, Farm> findDataOfFarmOfMont(Date date, String farmID) {
-		TreeMap<String, Farm> milkDataFromFarms = factory.getMilkDataFromFarms();
+		TreeMap<String, Farm> milkDataFromFarms = factory.getDataFromFarms();
 		TreeMap<String, Farm> milkDataOfTheMonth = new TreeMap<String, Farm>();
 		Farm farm = milkDataFromFarms.get(farmID);
 		Set<Entry<Date, Integer>> dataSetOfFarm = farm.getData().entrySet();
@@ -158,7 +158,7 @@ public class DataManager {
 	 */
 	public ArrayList<TreeMap<String, Data>> getDataSortedByField() {
 		ArrayList<TreeMap<String, Data>> sortedByMonth = new ArrayList<TreeMap<String, Data>>();
-		TreeMap<String, Farm> milkDataFromFarms = factory.getMilkDataFromFarms();
+		TreeMap<String, Farm> milkDataFromFarms = factory.getDataFromFarms();
 		Set<Entry<String, Farm>> dataSet = milkDataFromFarms.entrySet();
 		Iterator<Entry<String, Farm>> itr = dataSet.iterator();
 
@@ -185,7 +185,7 @@ public class DataManager {
 	 * @return milk data in the certain range
 	 */
 	private TreeMap<String, Farm> getDataInDateRange(Date d1, Date d2) {
-		TreeMap<String, Farm> milkDataFromFarms = factory.getMilkDataFromFarms();
+		TreeMap<String, Farm> milkDataFromFarms = factory.getDataFromFarms();
 		TreeMap<String, Farm> milkDataInRange = new TreeMap<String, Farm>();
 
 		// go through the milk data of each farm
@@ -379,14 +379,14 @@ public class DataManager {
 //
 //			Sort by Farm ID, or you can allow the user to select display ascending or descending by weight.
 	public String[][] annualReport(int year) {
-		int numFarm = factory.getMilkDataFromFarms().size();
+		int numFarm = factory.getDataFromFarms().size();
 		String[][] returnArr = new String[numFarm + 1][3];
 		int i = 1;
 		double totalWeight = factory.getTotalWeightOfYear(year) + 0.0;
 		returnArr[0][0] = Double.toString(totalWeight);
 		returnArr[0][1] = "";
 		returnArr[0][2] = "";
-		for (Farm f : factory.getMilkDataFromFarms().values()) {
+		for (Farm f : factory.getDataFromFarms().values()) {
 			returnArr[i][0] = f.getId();
 			int farmWeight = f.getTotalWeightOfYear(year);
 			returnArr[i][1] = Integer.toString(farmWeight);
@@ -405,14 +405,14 @@ public class DataManager {
 //			The list must be sorted by Farm ID, or you can prompt for ascending or descending by weight. 
 //	
 	public String[][] monthlyReport(int year, int month) {
-		int numFarm = factory.getMilkDataFromFarms().size();
+		int numFarm = factory.getDataFromFarms().size();
 		String[][] returnArr = new String[numFarm + 1][3];
 		int i = 1;
 		double totalWeight = factory.getTotalWeightOfMonth(year, month) + 0.0;
 		returnArr[0][0] = Double.toString(totalWeight);
 		returnArr[0][1] = "";
 		returnArr[0][2] = "";
-		for (Farm f : factory.getMilkDataFromFarms().values()) {
+		for (Farm f : factory.getDataFromFarms().values()) {
 			returnArr[i][0] = f.getId();
 			int farmWeight = f.getTotalWeightOfMonth(year, month);
 			returnArr[i][1] = Integer.toString(farmWeight);
@@ -430,12 +430,12 @@ public class DataManager {
 //
 //			The list must be sorted by Farm ID, or you can prompt for ascending or descending order by weight or percentage.
 	public String[][] dateRangeReport(Date dayMin, Date dayMax) {
-		int numFarm = factory.getMilkDataFromFarms().size();
+		int numFarm = factory.getDataFromFarms().size();
 		String[][] returnArr = new String[numFarm + 1][3];
 		int i = 1;
 		double totalWeight = 0;
 		int[] farmWeights = new int[numFarm + 1];
-		for (Farm f : factory.getMilkDataFromFarms().values()) {
+		for (Farm f : factory.getDataFromFarms().values()) {
 			returnArr[i][0] = f.getId();
 			int farmWeight = 0;
 			for (Map.Entry<Date, Integer> data : f.getData().entrySet()) {
