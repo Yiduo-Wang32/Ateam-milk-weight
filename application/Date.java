@@ -52,7 +52,8 @@ public class Date implements Comparable<Date> {
 		} else if (day <= 0) {
 			return false;
 		} else {
-			switch (day) {
+			switch (month) {
+			case -1:
 			case 1:
 			case 3:
 			case 5:

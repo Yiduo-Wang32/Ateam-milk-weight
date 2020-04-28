@@ -27,10 +27,12 @@
 package application;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.stream.Stream;
 
@@ -75,18 +77,17 @@ public class FileManager {
 		}
 	}
 
-	private void writeOneFarm(PrintWriter writer, Farm farm) {
-		String name = farm.getId();
-		farm.getData().entrySet().stream().map(entry -> String.format("%s,%s,%d",
-				entry.getKey().toString(), name, entry.getValue()))
-				.forEach(str -> writer.println(str));
-	}
-
 	public boolean writeToFile(TreeMap<String, Farm> farms) {
 		try (PrintWriter writer = new PrintWriter(new File(outputFile))) {
 			writer.println("date,farm_id,weight");
 			farms.entrySet().stream().map(entry -> entry.getValue())
-					.forEach(farm -> writeOneFarm(writer, farm));
+					.forEach(farm -> {
+						String name = farm.getId();
+						farm.getData().entrySet().stream().map(entry -> String.format("%s,%s,%d",
+								entry.getKey().toString(), name, entry.getValue()))
+								.forEach(str -> writer.println(str));
+					});
+			
 		} catch (IOException e) {
 			System.out.println("Invalid output file name");
 			e.printStackTrace();
@@ -95,7 +96,23 @@ public class FileManager {
 		return true;
 	}
 
-	public boolean writeToFile(Farm[] farms) {
+	public boolean writeToFile(ArrayList<TreeMap<String, Data>> farms) {
+		try (PrintWriter writer = new PrintWriter(outputFile)) {
+			writer.println("date,farm_id,weight");
+
+			farms.stream().forEach(tree -> {
+				tree.entrySet().stream()
+						.map(entry -> String.format("%s,%s,%s",
+								entry.getValue().getDate().toString(), entry.getKey(),
+								entry.getValue().getWeight()))
+						.forEach(str -> writer.println(str));
+			});
+
+		} catch (FileNotFoundException e) {
+			System.out.println("Invalid output file name");
+			e.printStackTrace();
+			return false;
+		}
 		return false;
 	}
 
