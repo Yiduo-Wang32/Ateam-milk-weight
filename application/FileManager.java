@@ -27,18 +27,12 @@
 package application;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.zip.DataFormatException;
 
 /**
  * FileManager - TODO Describe purpose of this user-defined type
@@ -90,7 +84,7 @@ public class FileManager {
 
 	public boolean writeToFile(TreeMap<String, Farm> farms) {
 		try (PrintWriter writer = new PrintWriter(new File(outputFile))) {
-
+			writer.println("date,farm_id,weight");
 			farms.entrySet().stream().map(entry -> entry.getValue())
 					.forEach(farm -> writeOneFarm(writer, farm));
 		} catch (IOException e) {
