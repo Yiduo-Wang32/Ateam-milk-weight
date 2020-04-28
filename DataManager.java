@@ -1,6 +1,7 @@
 import java.util.TreeMap;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -348,4 +349,113 @@ public class DataManager {
 		}
 		return maxData;
 	}
+
+//	FARM REPORT [required, get at least this one working]
+//			Prompt user for a farm id and year (or use all available data)
+//
+//			Then, display the total milk weight and percent of the total of all farm for each month.
+//
+//			Sort, the list by month number 1-12, show total weight, then that farm's percent of the total milk received for each month.
+//	
+	public String[][] farmReport(String farmId, int year) {
+		Farm farm = factory.getFarmFromID(farmId);
+		String[][] returnArr = new String[14][2];
+		int farmTotalWeightOfYear = farm.getTotalWeightOfYear(year);
+		int allFarmTotalWeightOfYear = factory.getTotalWeightOfYear(year);
+		returnArr[0][0] = Double.toString(farmTotalWeightOfYear);
+		returnArr[1][0] = Double.toString(100 * farmTotalWeightOfYear / (allFarmTotalWeightOfYear + 0.0));
+		for (int i = 1; i <= 12; i++) {
+			returnArr[i + 1][0] = "MONTH: " + i;
+			returnArr[i + 1][1] = Double
+					.toString(100 * farm.getTotalWeightOfMonth(year, i) / (allFarmTotalWeightOfYear + 0.0));
+		}
+		return returnArr;
+	}
+
+//	ANNUAL REPORT [next most important to get working]
+//			Ask for year.
+//
+//			Then display list of total weight and percent of total weight of all farms by farm for the year.
+//
+//			Sort by Farm ID, or you can allow the user to select display ascending or descending by weight.
+	public String[][] annualReport(int year) {
+		int numFarm = factory.getMilkDataFromFarms().size();
+		String[][] returnArr = new String[numFarm + 1][3];
+		int i = 1;
+		double totalWeight = factory.getTotalWeightOfYear(year) + 0.0;
+		returnArr[0][0] = Double.toString(totalWeight);
+		returnArr[0][1] = "";
+		returnArr[0][2] = "";
+		for (Farm f : factory.getMilkDataFromFarms().values()) {
+			returnArr[i][0] = f.getId();
+			int farmWeight = f.getTotalWeightOfYear(year);
+			returnArr[i][1] = Integer.toString(farmWeight);
+			double percentage = farmWeight / totalWeight;
+			returnArr[i][2] = Double.toString(percentage);
+			i++;
+		}
+		return returnArr;
+	}
+
+//	MONTHLY REPORT [next most important to get working]
+//			Ask for year and month.
+//
+//			Then, display a list of totals and percent of total by farm.
+//
+//			The list must be sorted by Farm ID, or you can prompt for ascending or descending by weight. 
+//	
+	public String[][] monthlyReport(int year, int month) {
+		int numFarm = factory.getMilkDataFromFarms().size();
+		String[][] returnArr = new String[numFarm + 1][3];
+		int i = 1;
+		double totalWeight = factory.getTotalWeightOfMonth(year, month) + 0.0;
+		returnArr[0][0] = Double.toString(totalWeight);
+		returnArr[0][1] = "";
+		returnArr[0][2] = "";
+		for (Farm f : factory.getMilkDataFromFarms().values()) {
+			returnArr[i][0] = f.getId();
+			int farmWeight = f.getTotalWeightOfMonth(year, month);
+			returnArr[i][1] = Integer.toString(farmWeight);
+			double percentage = farmWeight / totalWeight;
+			returnArr[i][2] = Double.toString(percentage);
+			i++;
+		}
+		return returnArr;
+	}
+
+//	DATE RANGE REPORT [least points, but still worth some if you can get this working]
+//			Prompt user for start date (year-month-day) and end month-day,
+//
+//			Then display the total milk weight per farm and the percentage of the total for each farm over that date range.
+//
+//			The list must be sorted by Farm ID, or you can prompt for ascending or descending order by weight or percentage.
+	public String[][] dateRangeReport(Date dayMin, Date dayMax) {
+		int numFarm = factory.getMilkDataFromFarms().size();
+		String[][] returnArr = new String[numFarm + 1][3];
+		int i = 1;
+		double totalWeight = 0;
+		int[] farmWeights = new int[numFarm + 1];
+		for (Farm f : factory.getMilkDataFromFarms().values()) {
+			returnArr[i][0] = f.getId();
+			int farmWeight = 0;
+			for (Map.Entry<Date, Integer> data : f.getData().entrySet()) {
+				Date keyDate = data.getKey();
+				if (keyDate.compareTo(dayMin) >= 0 && keyDate.compareTo(dayMin) <= 0) {
+					farmWeight += data.getValue();
+				}
+			returnArr[i][1] = Integer.toString(farmWeight);
+			}
+			farmWeights[i] = farmWeight;
+			totalWeight += farmWeight;
+		}
+		for(int j =0; j < numFarm;j++) {
+			returnArr[j+1][2] = Double.toString(100*totalWeight/farmWeights[j+1]);
+		}
+		returnArr[0][0] = Double.toString(totalWeight);
+		returnArr[0][1] = "";
+		returnArr[0][2] = "";
+
+		return returnArr;
+	}
+
 }
